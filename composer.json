@@ -127,12 +127,12 @@
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "cp ./build/hooks/pre-commit ./.git/hooks/pre-commit"
+            "cp ./build/hooks/pre-commit $(git rev-parse --git-dir)/hooks/pre-commit"
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "cp ./build/hooks/pre-commit ./.git/hooks/pre-commit"
+            "cp ./build/hooks/pre-commit $(git rev-parse --git-dir)/hooks/pre-commit"
         ]
     },
     "config": {
