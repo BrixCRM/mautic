@@ -4,7 +4,9 @@ ROOT=$(git rev-parse --show-toplevel)
 
 echo "php-cs-fixer pre commit hook start"
 
-PHP_CS_FIXER="bin/php-cs-fixer"
+test -e bin/php-cs-fixer.bat &&
+  PHP_CS_FIXER="bin/php-cs-fixer.bat" ||
+  PHP_CS_FIXER="bin/php-cs-fixer"
 HAS_PHP_CS_FIXER=false
 
 if [ -x $PHP_CS_FIXER ]; then
