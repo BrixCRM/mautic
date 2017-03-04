@@ -122,12 +122,12 @@
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "php -r \"if(file_exists('./.git')&&file_exists('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''))){copy('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''),trim(shell_exec('git rev-parse --git-dir')).'/hooks/pre-commit');}\""
+            "test ! -e \".git\" || { git rev-parse --git-dir || { echo 'GIT required, remove .git or resolve problem(s)' >&2; exit 1; }; }; php -r \"if(file_exists('./.git')&&file_exists('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''))){copy('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''),trim(shell_exec('git rev-parse --git-dir')).'/hooks/pre-commit');}\""
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "php -r \"if(file_exists('./.git')&&file_exists('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''))){copy('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''),trim(shell_exec('git rev-parse --git-dir')).'/hooks/pre-commit');}\""
+            "test ! -e \".git\"  || { git rev-parse --git-dir || { echo 'GIT required, remove .git or resolve problem(s)' >&2; exit 1; }; }; php -r \"if(file_exists('./.git')&&file_exists('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''))){copy('./build/hooks/pre-commit'.(PHP_OS=='WINNT'?'.win':''),trim(shell_exec('git rev-parse --git-dir')).'/hooks/pre-commit');}\""
         ]
     },
     "config": {
